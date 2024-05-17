@@ -5,6 +5,10 @@
 //   and returns nothing.
 use packages::hello_world;
 
+mod packages {
+    pub fn hello_world() {}
+}
+
 // This is the entrypoint of the binary.
 fn main() {
     hello_world();

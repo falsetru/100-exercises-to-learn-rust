@@ -1,11 +1,37 @@
 // TODO: Implement `TryFrom<String>` and `TryFrom<&str>` for the `Status` enum.
 //  The parsing should be case-insensitive.
 
+use crate::TicketNewError;
+
+#[derive(Clone, Debug, PartialEq)]
 pub enum Status {
     ToDo,
     InProgress,
     Done,
 }
+
+impl TryFrom<String> for Status {
+    type Error = TicketNewError;
+    fn try_from(s: String) -> Result<Self, Self::Error> {
+        Self::try_from(s.as_str())
+    }
+}
+
+impl TryFrom<&str> for Status {
+    type Error = TicketNewError;
+    fn try_from(s: &str) -> Result<Self, Self::Error> {
+        if s.eq_ignore_ascii_case("todo") {
+            Ok(Status::ToDo)
+        } else if s.eq_ignore_ascii_case("inprogress") {
+            Ok(Status::InProgress)
+        } else if s.eq_ignore_ascii_case("done") {
+            Ok(Status::Done)
+        } else {
+            Err(TicketNewError::InvalidStatus)
+        }
+    }
+}
+
 
 #[cfg(test)]
 mod tests {
