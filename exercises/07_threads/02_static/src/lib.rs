@@ -4,7 +4,7 @@
 use std::thread;
 
 pub fn sum(slice: &'static [i32]) -> i32 {
-    todo!()
+    slice.iter().sum()
 }
 
 #[cfg(test)]
