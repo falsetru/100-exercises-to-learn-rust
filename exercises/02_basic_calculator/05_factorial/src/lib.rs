@@ -10,6 +10,10 @@
 //
 // Use only what you learned! No loops yet, so you'll have to use recursion!
 
+pub fn factorial(n: u64) -> u64 {
+    (1..=n).product()
+}
+
 #[cfg(test)]
 mod tests {
     use crate::factorial;
